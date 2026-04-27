@@ -12,7 +12,7 @@ Ce projet documente la mise en place d'une infrastructure réseau sécurisée.
 * Schéma logique du réseau
 * Schéma physique du réseau
 
-### II. Installation et configuration de Pfsense
+* [II. Installation et configuration de pfSense](docs/02_pfsense.md)
 * Configuration des interfaces réseaux
 * Configuration des adresses IP
 
