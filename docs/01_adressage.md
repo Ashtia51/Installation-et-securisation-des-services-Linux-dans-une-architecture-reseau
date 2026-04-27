@@ -16,3 +16,15 @@ Ce chapitre détaille la configuration réseau utilisée pour l'infrastructure s
 | **Réseau DMZ** | `172.16.0.0/24` | Zone isolée |
 | **Passerelle DMZ** | `172.16.0.1/24` | IP Interface DMZ Pfsense |
 | **Serveur Web** | `172.16.0.3/24` | Debian (Hébergement) |
+
+## Schémas du réseau
+
+### Schéma Logique
+Ce schéma représente les flux et l'organisation des sous-réseaux (LAN, DMZ, WAN).
+
+![Schéma Logique](../schema_logique.png)
+
+### Schéma Physique
+Ce schéma détaille les équipements et les connexions physiques de l'infrastructure.
+
+![Schéma Physique](../schema_physique.png)
