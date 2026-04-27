@@ -69,3 +69,38 @@ Nous listons les services et ports actifs pour confirmer que la politique de "De
 ![Liste des règles FirewallD](../images/firewallD_liste.png)
 
 > **Note :** Les règles ont été testées immédiatement. Elles ont ensuite été passées en mode permanent (via l'option `--permanent`) pour persister après un redémarrage du serveur.
+
+## 7. Protection contre les intrusions avec Fail2Ban
+
+Même avec un port SSH modifié et une authentification par clé, le serveur peut subir des tentatives de connexion automatisées. Nous installons **Fail2Ban** pour détecter ces comportements et bannir dynamiquement les adresses IP malveillantes.
+
+### A. Installation du service
+Nous installons le paquet pour permettre au serveur d'analyser les fichiers de logs en temps réel.
+![Installation Fail2Ban](../images/fail2ban_install.png)
+
+### B. Configuration et surveillance du service
+Une fois installé, nous vérifions que le service est actif. Fail2Ban crée des "jails" (prisons) pour surveiller des services spécifiques. On constate ici qu'il cible correctement notre service SSH.
+![Statut Fail2Ban SSH](../images/fail2ban_status_ssh.png)
+
+### C. État de la "Jail" SSH
+En consultant le statut détaillé de la prison SSH, nous pouvons voir les statistiques de bannissement. Cela nous permet de confirmer que le moteur de détection est opérationnel et prêt à bloquer toute tentative d'intrusion.
+![Statut Jailed SSH](../images/fail2ban_jailed_status.png)
+
+> **Note :** Fail2Ban a été configuré pour surveiller notre port personnalisé (5091). En cas de multiples échecs d'authentification, l'IP source est automatiquement ajoutée aux tables de blocage de notre pare-feu local pour une durée déterminée.
+
+## 8. Supervision du serveur avec Netdata
+
+Pour assurer la maintenance opérationnelle du serveur, nous avons installé **Netdata**. Cet outil de monitoring en temps réel nous permet d'analyser les performances du système (CPU, RAM, Disque) ainsi que l'activité réseau et les performances du service Apache2.
+
+### Pourquoi Netdata ?
+* **Rapidité :** Installation et configuration quasi-instantanées.
+* **Interface intuitive :** Dashboard moderne accessible via navigateur web.
+* **Faible consommation :** Optimisé pour ne pas impacter les ressources du serveur web.
+* **Détails granulaires :** Analyse précise du hardware et des services software.
+
+### Aperçu du Dashboard
+Depuis une machine du LAN, nous accédons à l'interface de supervision pour vérifier la stabilité de la DMZ.
+
+![Tableau de bord Netdata](../images/netdata_dashboard.png)
+
+> **Note :** L'accès à l'interface Netdata est sécurisé et limité aux adresses IP autorisées afin de ne pas exposer les métriques du serveur sur le réseau public.
