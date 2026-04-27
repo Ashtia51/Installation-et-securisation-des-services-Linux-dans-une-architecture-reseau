@@ -63,5 +63,28 @@ Nous renseignons ensuite les informations d'identité du routeur ainsi que les s
 
 ![Configuration DNS et Domaine](../images/domain_dns_pfsense.png)
 
+## 4. Vérification et sécurisation finale
+
+### Validation des interfaces WAN et LAN
+L'adresse WAN ayant été configurée précédemment via le Shell, nous validons ici que les paramètres ont bien été repris par l'interface Web.
+
+![Vérification Interface WAN](../images/wan_interface_pfsense.png)
+
+Il en va de même pour l'interface LAN, qui servira de passerelle pour nos clients internes.
+
+![Vérification Interface LAN](../images/lan_interface_pfsense.png)
+
+### Sécurisation de l'accès
+Par mesure de sécurité, nous procédons immédiatement à la modification du mot de passe de l'administrateur (`admin`) pour remplacer celui par défaut.
+
+![Modification du mot de passe](../images/change_mdp_pfsense.png)
+
+### État actuel de l'infrastructure
+Voici le tableau de bord récapitulatif après cette première phase de configuration. 
+
+> **Note :** On s'aperçoit à ce stade que si le WAN et le LAN sont opérationnels, la **DMZ** (visible sous le nom `OPT1`) reste encore à être configurée au niveau de l'adressage et de son nommage définitif.
+
+![Liste des interfaces finales](../images/int_liste_pfsense.png)
+
 
 
