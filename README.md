@@ -25,7 +25,7 @@ Ce projet documente la mise en place d'une infrastructure réseau sécurisée.
 * [IV. Installation du serveur web Debian 12.5 Bookworm](docs/03_debian.md)
 * Configuration du serveur
 
-### V. Sécurisation du serveur
+[V. Sécurisation du serveur](docs/04_securite.md)
 * Restrictions **SSH**
 * Installation et configuration de **FirewallD**, **Fail2ban** et **Netdata**
 
