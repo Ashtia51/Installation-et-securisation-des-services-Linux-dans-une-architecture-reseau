@@ -7,7 +7,7 @@ Ce projet documente la mise en place d'une infrastructure réseau sécurisée.
 
 ## Sommaire
 
-### I. Adressage IP
+* [I. Adressage IP](docs/01_adressage.md)
 * Contexte
 * Schéma logique du réseau
 * Schéma physique du réseau
