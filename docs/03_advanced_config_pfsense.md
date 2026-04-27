@@ -143,4 +143,43 @@ Nous renseignons l'adresse IP de la passerelle NAT de VMware (généralement la 
 
 Cette étape est indispensable pour que le serveur Debian puisse effectuer ses mises à jour et que les clients du LAN puissent naviguer sur le Web.
 
+## 4. Configuration détaillée des flux et redirections
+
+Cette section détaille la mise en place technique de la matrice de flux, allant de l'ouverture des services Web à l'isolation stricte de la DMZ.
+
+### A. Accès Public (NAT / Port Forwarding)
+Pour rendre notre futur serveur Web accessible depuis l'extérieur, nous avons configuré des redirections de ports sur l'interface WAN :
+* **Port 80 (HTTP) :** Redirection vers le serveur Web en DMZ.
+  ![Redirection Port 80](../images/wan_dmz80.png)
+* **Port 443 (HTTPS) :** Redirection sécurisée vers le serveur Web.
+  ![Redirection Port 443](../images/wan_dmz443.png)
+
+### B. Administration depuis le LAN
+Le réseau local doit pouvoir administrer et consulter le serveur en DMZ :
+* **Flux HTTP (Port 80) :** Autorisation pour la vérification du site.
+  ![Autorisation LAN vers DMZ 80](../images/lan80_dmz.png)
+* **Flux SSH (Port 22) :** Autorisation pour l'administration distante du serveur Debian.
+  ![Autorisation LAN vers DMZ 22](../images/lan22_dmz.png)
+
+### C. Sécurisation et Isolation de la DMZ
+La sécurité repose sur le cloisonnement. Nous avons appliqué les règles suivantes sur l'interface DMZ :
+1. **Interdiction DMZ vers LAN :** Isolation totale pour éviter qu'un serveur compromis n'accède au réseau interne.
+   ![Interdiction DMZ vers LAN](../images/deny_dmz_lan.png)
+2. **Accès Internet (Mises à jour) :** Règle temporaire permettant au serveur de récupérer ses paquets.
+   ![Règle Mise à jour DMZ](../images/rule_maj_dmz.png)
+3. **Flux DNS :** Autorisation des requêtes DNS de la DMZ vers le WAN pour la résolution de noms.
+   ![DNS DMZ vers WAN](../images/dns_dmz_wan.png)
+
+### D. Synthèse des règles par interface
+Voici l'état final des tables de filtrage après configuration :
+
+* **Résultats Interface WAN :**
+  ![Résultats WAN](../images/wan_rule_results.png)
+* **Résultats Interface LAN :**
+  ![Résultats LAN](../images/lan_rule_results.png)
+* **Résultats Interface DMZ :**
+  ![Résultats DMZ](../images/dmz_rule_results.png)
+
+  
+
 
