@@ -33,5 +33,5 @@ La machine doit être capable de joindre l'interface web d'administration de pfS
 
 > ![Commande ipconfig](../images/ipconfigall_w10.png)
 > ![Commande ping](../images/icmp_w10.png)
-> ![Interface Web pfSense](../images/w10_internet.png)
+> ![Interface Web pfSense](../images/w10_internet1.png)
 
